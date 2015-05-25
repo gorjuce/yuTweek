@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div id="sidebar">
+                {% if author %}
+                    <h1>{{ author.username }}</h1>
+                    <p><i class="icon-calendar"></i> Joined in {{ author.date_joined|date:"b o" }}</p>
+                {% else %}
+                    <h1>YuTweek</h1>
+                {% endif %}
+                <span><i class="icon-quote-right"></i> Number of tweeks: {{  tweeks.count }}</span>
+            </div>
+            {% if not user.is_authenticated %}
+                <div class="text-center">
+                    <a href="{%url "login" %}?next=/" class="btn btn-primary text-center">Login and post your own Tweek !</a>
+                </div>
+            {% endif %}
+
+        </div>
+        <div class="col-md-8" id="tweeks">
+            {% if form and user.is_authenticated %}
+                <div id="addTweek">
+                    <form action="" method="post">{% csrf_token %}
+                            {{ form|bootstrap }}
+                            <span id="remaining" class="badge">140</span>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            {% endif  %}
+            {% for tweek in tweeks %}
+                <div class="tweek">
+                    <a href="{% url "user_tweeks" user_pk=tweek.author.pk %}">{{ tweek.author }}</a>
+                    &bull;
+                    <span class="time">{{ tweek.date|naturaltime }}</span>
+                    <p>{{ tweek.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

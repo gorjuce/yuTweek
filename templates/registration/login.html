@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+{% if form.has_errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+<div class="col-md-6 col-md-offset-3">
+    <form method="post" action=".">{% csrf_token %}
+        <table>
+            {{ form|bootstrap }}
+        </table>
+         <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    or <a href="{% url "register" %}">Create an account</a>
+</div>
+{% endblock %}

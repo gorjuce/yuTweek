@@ -1,0 +1,31 @@
+body {
+    padding-top: 70px;
+}
+
+#tweeks, #sidebar {
+    padding: 0;
+    border: 1px solid #E1E8ED;
+    border-radius: 8px;
+}
+#sidebar {
+    padding: 8px;
+    margin-bottom: 30px;
+}
+#sidebar h1 {
+    text-align: center;
+}
+#addTweek {
+    padding: 8px;
+    background-color: #EAF8FD;
+    border-bottom: 1px solid #E1E8ED;
+}
+.tweek {
+    padding: 8px;
+    border-bottom: 1px solid #E1E8ED;
+}
+
+.tweek .time {
+    font-size: 11px;
+    line-height: 11px;
+    color: #8899A6;
+}
